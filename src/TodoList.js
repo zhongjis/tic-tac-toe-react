@@ -27,6 +27,7 @@ const TodoList = (props) => {
     "When no one wins, display a message about the result being a draw.",
   ];
 
+  // add key of the finished item here to strike them out
   const completed = [];
   
   return (
