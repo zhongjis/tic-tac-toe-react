@@ -1,5 +1,9 @@
 import React from 'react';
-import Board from './Board'
+import Board from './Board';
+
+const GameTitle = () => {
+    return <h1>Tic Tac Toe made by <a href="https://github.com/zhongjis">Zhongjie Shen</a></h1>;
+}
 
 class Game extends React.Component {
     constructor(props) {
@@ -61,15 +65,20 @@ class Game extends React.Component {
 
         return (
             <div className='game'>
-                <div className='game-board'>
-                    <Board 
-                        squares={current.squares}
-                        onClick={(i) => this.handleClick(i)}
-                    />
+                <div className='game-title'>
+                    <GameTitle />
                 </div>
-                <div className='game-info'>
-                    <div>{status}</div>
-                    <ol>{moves}</ol>
+                <div className='game-body'>
+                    <div className='game-board'>
+                        <Board 
+                            squares={current.squares}
+                            onClick={(i) => this.handleClick(i)}
+                        />
+                    </div>
+                    <div className='game-info'>
+                        <div>{status}</div>
+                        <ol>{moves}</ol>
+                    </div>
                 </div>
             </div>
         );
