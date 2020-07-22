@@ -11,6 +11,7 @@ class Game extends React.Component {
         this.state = {
             history: [{
                 squares: Array(9).fill(null),
+                move: [-1, -1], // [x, y]
             }],
             stepNumber: 0,
             xIsNext: true,
@@ -18,16 +19,26 @@ class Game extends React.Component {
     }
 
     handleClick(i) {
+        // calculating x axis and y axis
+        const y = Math.floor(i/3);
+        const x = i % 3;
+
+        // update history with the new data
         const history = this.state.history.slice(0, this.state.stepNumber + 1);
-        const current = history[history.length - 1];
-        const squares = current.squares.slice();
+        const currentStep = history[history.length - 1];
+        const squares = currentStep.squares.slice();
+
+        // check if winner is true
         if (calculateWinner(squares) || squares[i]) {
             return;
         }
+
+        // fill square and update history
         squares[i] = this.state.xIsNext ? 'X' : 'O';
         this.setState({
             history: history.concat([{
                 squares: squares,
+                move: [x, y],
             }]),
             stepNumber: history.length,
             xIsNext: !this.state.xIsNext,
@@ -47,9 +58,13 @@ class Game extends React.Component {
         const winner = calculateWinner(current.squares);
 
         const moves = history.map((step, move) => {
+            const xAxis = step.move[0];
+            const yAxis = step.move[1];
+
             const desc = move ?
-                'Go to move #' + move:
+                'Go to move #' + move + " (" + xAxis + ", " + yAxis + ")":
                 'Go to game start';
+
             return (
                 <li key={move}>
                     <button onClick={() => this.jumpTo(move)}>{desc}</button>

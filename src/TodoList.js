@@ -28,7 +28,7 @@ const TodoList = (props) => {
   ];
 
   // add key of the finished item here to strike them out
-  const completed = [];
+  const completed = [0];
   
   return (
     <div className='todo-list'>
