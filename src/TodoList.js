@@ -4,6 +4,11 @@ import React from 'react';
 
 const TodoListBody = (props) => {
   const rows = props.listTodo.map((row, index) => {
+    for (const completed of props.completed) {
+      if (completed === index) {
+        return <li key={index}><s>{row}</s></li>;
+      }
+    }
     return (
       <li key={index}>{row}</li>
     )
@@ -21,12 +26,14 @@ const TodoList = (props) => {
     "When someone wins, highlight the three squares that caused the win.",
     "When no one wins, display a message about the result being a draw.",
   ];
+
+  const completed = [];
   
   return (
     <div className='todo-list'>
       <h2>TODO</h2>
       <ol>
-        <TodoListBody listTodo={listTodo} />
+        <TodoListBody listTodo={listTodo} completed={completed} />
       </ol>
     </div>
   );
