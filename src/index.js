@@ -1,10 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+
 import './index.css';
 
-import Game from './Game';
+import Page from './Page';
 
 ReactDOM.render(
-    <Game />,
+    <Page />,
     document.getElementById('root')
 );
