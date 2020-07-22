@@ -4,10 +4,13 @@ import Square from './Square';
 
 class Board extends React.Component {
     renderSquare(i) {
+        const y = Math.floor(i/3);
         return(
             <Square
                 value={this.props.squares[i]}
                 onClick={() => this.props.onClick(i)}
+                x={i%3}
+                y={y}
             />
         );
     }
